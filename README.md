@@ -40,6 +40,8 @@ Anyone can execute the below query, if they have google bigquery access .
 
 ##### BigQuery Link : https://bigquery.cloud.google.com/savedquery/679380573565:2108d11ef33049c9a7d457ec570bd8e1
 
+
+
 ```sql
 SELECT
   fullVisitorID,
@@ -129,4 +131,9 @@ FROM (
     productSKU,
     productName,
     consecutiveWeeksCount )
+ ```   
+ #### Output:
+
+![Screenshot](target/techallenge2-output.png)
+
 
