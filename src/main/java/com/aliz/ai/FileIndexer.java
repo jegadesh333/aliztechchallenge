@@ -1,4 +1,4 @@
-package com.jegadesh.aliz.ai;
+package com.aliz.ai;
 
 import com.google.common.collect.Ordering;
 import com.google.common.collect.SortedSetMultimap;
