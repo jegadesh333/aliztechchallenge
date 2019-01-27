@@ -32,12 +32,11 @@ You need to collect the visitors who purchased the same goods in at least 2 cons
 
 #### Assumptions:
 
-* I have used Google's stores Google Analytics data as input for this excercise as i dont have any other google analytics data.
-
-#### Explanation:
-
+* I have used Google's stores Google Analytics data as input for this excercise as i dont have access to any other google analytics data.
 
 #### Google BigQuery:
+
+Anyone can execute the below query, if they have google bigquery access .
 
 ##### BigQuery Link : https://bigquery.cloud.google.com/savedquery/679380573565:2108d11ef33049c9a7d457ec570bd8e1
 
