@@ -38,6 +38,9 @@ You need to collect the visitors who purchased the same goods in at least 2 cons
 
 
 #### Google BigQuery:
+
+##### BigQuery Link : https://bigquery.cloud.google.com/savedquery/679380573565:2108d11ef33049c9a7d457ec570bd8e1
+
 ```sql
 select fullVisitorID, (STRUCT(productSKU, productName)) AS product,quantity,totalPrice,consecutiveWeeksCount,lastweekdate
 from 
