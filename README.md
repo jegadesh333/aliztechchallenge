@@ -42,35 +42,92 @@ You need to collect the visitors who purchased the same goods in at least 2 cons
 ##### BigQuery Link : https://bigquery.cloud.google.com/savedquery/679380573565:2108d11ef33049c9a7d457ec570bd8e1
 
 ```sql
-select fullVisitorID, (STRUCT(productSKU, productName)) AS product,quantity,totalPrice,consecutiveWeeksCount,lastweekdate
-from 
-  (select fullVisitorId,productSKU,v2ProductName as productName,consecutiveWeeksCount,count(*) as quantity,sum(productPrice) as totalPrice,max(date) as lastweekdate
-  from
-    (select *
-    from 
-      (select fullVisitorId,P.productSKU,P.v2ProductName,P.productPrice,date
-      FROM 
-        (
-        SELECT fullVisitorId,h.product,PARSE_DATE('%Y%m%d', date) AS date
-        FROM `bigquery-public-data.google_analytics_sample.ga_sessions_201707*`, UNNEST(hits) as h ),UNNEST(product) as P) as a
-      INNER JOIN
-      (select fullVisitorId as visitiorID,productSKU as productSKUs,count(difference) as consecutiveWeeksCount
-      from 
-        (select fullVisitorId,productSKU,week,leader,(week - leader) as difference 
-        from 
-        (select fullVisitorId,productSKU,week,lead(week) OVER (PARTITION BY fullVisitorId,productSKU ORDER BY week desc) as leader 
-        from 
-        (select fullVisitorId,P.productSKU,P.v2ProductName,P.productPrice,date, EXTRACT(WEEK FROM date) as week
-        FROM 
-        (
-        SELECT fullVisitorId,h.product,PARSE_DATE('%Y%m%d', date) AS date
-        FROM 
-        `bigquery-public-data.google_analytics_sample.ga_sessions_201707*`, UNNEST(hits) as h),UNNEST(product) as P))
-        )
-      where difference =1 group by fullVisitorId,productSKU
-      ) as b 
-    on a.fullVisitorId=b.visitiorID and a.productSKU=b.productSKUs
-    )
-  group by fullVisitorId, productSKU, productName,consecutiveWeeksCount
-  )
+SELECT
+  fullVisitorID,
+  (STRUCT(productSKU,
+      productName)) AS product,
+  quantity,
+  totalPrice,
+  consecutiveWeeksCount,
+  lastweekdate
+FROM (
+  SELECT
+    fullVisitorId,
+    productSKU,
+    v2ProductName AS productName,
+    consecutiveWeeksCount,
+    COUNT(*) AS quantity,
+    SUM(productPrice) AS totalPrice,
+    MAX(date) AS lastweekdate
+  FROM (
+    SELECT
+      *
+    FROM (
+      SELECT
+        fullVisitorId,
+        P.productSKU,
+        P.v2ProductName,
+        P.productPrice,
+        date
+      FROM (
+        SELECT
+          fullVisitorId,
+          h.product,
+          PARSE_DATE('%Y%m%d',
+            date) AS date
+        FROM
+          `bigquery-public-data.google_analytics_sample.ga_sessions_201707*`,
+          UNNEST(hits) AS h ),
+        UNNEST(product) AS P) AS a
+    INNER JOIN (
+      SELECT
+        fullVisitorId AS visitiorID,
+        productSKU AS productSKUs,
+        COUNT(difference) AS consecutiveWeeksCount
+      FROM (
+        SELECT
+          fullVisitorId,
+          productSKU,
+          week,
+          leader,
+          (week - leader) AS difference
+        FROM (
+          SELECT
+            fullVisitorId,
+            productSKU,
+            week,
+            LEAD(week) OVER (PARTITION BY fullVisitorId, productSKU ORDER BY week DESC) AS leader
+          FROM (
+            SELECT
+              fullVisitorId,
+              P.productSKU,
+              P.v2ProductName,
+              P.productPrice,
+              date,
+              EXTRACT(WEEK
+              FROM
+                date) AS week
+            FROM (
+              SELECT
+                fullVisitorId,
+                h.product,
+                PARSE_DATE('%Y%m%d',
+                  date) AS date
+              FROM
+                `bigquery-public-data.google_analytics_sample.ga_sessions_201707*`,
+                UNNEST(hits) AS h),
+              UNNEST(product) AS P)) )
+      WHERE
+        difference =1
+      GROUP BY
+        fullVisitorId,
+        productSKU ) AS b
+    ON
+      a.fullVisitorId=b.visitiorID
+      AND a.productSKU=b.productSKUs )
+  GROUP BY
+    fullVisitorId,
+    productSKU,
+    productName,
+    consecutiveWeeksCount )
 
