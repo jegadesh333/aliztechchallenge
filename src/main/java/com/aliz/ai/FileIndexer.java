@@ -17,7 +17,7 @@ public class FileIndexer {
   private static final String DASH_SEPARATOR = "-";
   private static final String DOT_SEPARATOR = ".";
   private static final String BACKSLASH_SEPRATOR = "/";
-  private static final String SPECIAL_CHARACTER_REGEX_PATTERN="[+.^:,]";
+  private static final String SPECIAL_CHARACTER_REGEX_PATTERN="[!+.^:,]";
   private static final String EMPTY_STRING="";
   private static BufferedReader reader = null;
   private static BufferedWriter writer = null;
