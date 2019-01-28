@@ -33,6 +33,7 @@ You need to collect the visitors who purchased the same goods in at least 2 cons
 #### Assumptions:
 
 * I have used Google's stores Google Analytics data as input for this excercise as i dont have access to any other google analytics data.
+* I have taken one month of google analytics data for this excercise. The same query can be run against for the whole year by changing the table regex pattern.
 
 #### Google BigQuery:
 
@@ -40,7 +41,7 @@ Anyone can execute the below query, if they have google bigquery access .
 
 ##### BigQuery Link : https://bigquery.cloud.google.com/savedquery/679380573565:2108d11ef33049c9a7d457ec570bd8e1
 
-
+##### Query: 
 
 ```sql
 SELECT
