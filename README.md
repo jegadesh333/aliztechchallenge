@@ -20,6 +20,8 @@ file-indexer-1.0.jar is available in target folder in the repo.
 
 `java -jar file-indexer-1.0.jar <input-file-path> <output-path>`
 
+`java -jar file-indexer-1.0.jar /tmp/input/sample.txt /tmp/output`
+
 # Aliz Tech Challenge 3
 
 ## Problem Statement :
