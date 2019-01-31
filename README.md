@@ -119,7 +119,7 @@ FROM (
         PARSE_DATE('%Y%m%d',
           date) AS date
       FROM
-        `bigquery-public-data.google_analytics_sample.ga_sessions_20170701`,
+        `bigquery-public-data.google_analytics_sample.ga_sessions_201707*`,
         UNNEST(hits) AS h),
       UNNEST(product) AS P))
 ```
