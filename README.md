@@ -76,7 +76,7 @@ I have taken sample dataset contains Google Analytics 360 data from the Google M
 
 Google Analytics 360 data has one big query table created for each day like below.
 
-Sample Table Name for July 1st 2017 : bigquery-publicdata:google_analytics_sample.ga_sessions_20170701
+<b>Sample Table Name for July 1st 2017 :</b> bigquery-publicdata:google_analytics_sample.ga_sessions_20170701
 
 ##### Step 1 : 
 
@@ -122,7 +122,7 @@ FROM (
 ```
 ##### Step 3 : 
 
-* For each purchase, get the last date that was purchased before and calcuate the difference in weeks between the purchases.
+* For each purchase, get the last week that was purchased before and calcuate the difference in weeks between the purchases.
 
 ```sql
 SELECT
@@ -215,7 +215,7 @@ Step 5:
 * Join this with the actual dataset to get other attributes like productname, price, dates for each purchase.
 * Calculate the total price by summing up the product price for all the purchases for the visitor & product combibnation as the quanity * column comes always null in this dataset.
 * Get the max of dates to give the last purchase dates on each products.
-* Constructed the productsku & product name as the product struct as per the problem statement.
+* Construct the productsku & product name as the product struct as per the problem statement.
 
 #### Google BigQuery:
 
