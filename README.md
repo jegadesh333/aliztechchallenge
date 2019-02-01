@@ -11,23 +11,14 @@ We store 4 billion 32 bit (integer) numbers in a file. It does not matter, wheth
 #### Solution 1 : Suitable for enough Memory Available & Lesser Disk I/O performance
 
 * The input file has 4 billion 32 bit integer numbers.
-
 * To store a 32 bit integer number , it takes 4 bytes. So to store the whole input file in memory, we need 4000000000*4 bytes i.e 16gb (approx) which is a huge memory to load the file.
-
 * Storing the actual 32-bit digits in some  memory data structure is not an efficient solution. So instead of doing that, we can create a bit array of size equal to the maximum 32 bit numbers
-
 * i.e 2 ^32 = 4294967296 (This can be the highest possible number that must be available in the file)
-
 * The above number is closed to the actual given 4 billion numbers. So we are not creating a place holder bit array as the whole input covers close to 90% of the array. 
-
 * Each bit in the array takes one bit. So the whole bit array will come to 500 mb only. So if we have 500 mb available memory we can create an bitArray of size 4294967296 with zero as the default value in it.
-
 * Iterate over the file and for each value, set the value to 1 for the array index. For example, if the input number is 36 , then set bitArray[36]=1. 
-
 * Once we traversed over the entire input file, we have the bitarray values set 1 for available input numbers.
-
 * Iterate over the array and the first index whose value is zero is our expected output.
-
 * <b>With this solution, we have read the input file only once and the computation time will be O(n). As this solution reads the file only once this favours when there is slower I/O performance in the disk.</b>
 
 #### solution 2 : Suitable for lesser memory and better I/O disk performance.
