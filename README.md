@@ -210,11 +210,11 @@ GROUP BY
 
 Step 5:
 
-Now we have all the products for each visitor that has purchased atleast two consecutive weeks.
-Join this with the actual dataset to get other attributes like productname, price, dates for each purchase.
-Calculate the total price by summing up the product price for all the purchases for the visitor & product combibnation as the quanity column comes always null in this dataset.
-Get the max of dates to give the last purchase dates on each products.
-Constructed the productsku & product name as the product struct as per the problem statement.
+* Now we have all the products for each visitor that has purchased atleast two consecutive weeks.
+* Join this with the actual dataset to get other attributes like productname, price, dates for each purchase.
+* Calculate the total price by summing up the product price for all the purchases for the visitor & product combibnation as the quanity * column comes always null in this dataset.
+* Get the max of dates to give the last purchase dates on each products.
+* Constructed the productsku & product name as the product struct as per the problem statement.
 
 #### Google BigQuery:
 
